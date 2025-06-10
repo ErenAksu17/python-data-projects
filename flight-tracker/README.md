@@ -3,12 +3,14 @@
 Gerçek zamanlı uçuşları görselleştiren Python tabanlı bir Streamlit uygulaması.  
 OpenSky Network API kullanılarak uçakların konumu, ülke bilgisi ve hızı gibi veriler harita üzerinde gösterilir.
 
+🔗 [Canlı Demo](https://flight-tracker-amsgn7wuwjjhs2n4ofrd23.streamlit.app)
 ---
 
 ## 📸 Örnek Ekran
 
-![image](https://github.com/user-attachments/assets/a24717e7-a585-437a-9ee1-7f24f2129fde)
+![image](https://github.com/user-attachments/assets/64d77a2b-e80e-497b-92fb-7793e9672a99)
 
+![image](https://github.com/user-attachments/assets/a24717e7-a585-437a-9ee1-7f24f2129fde)
 
 ---
 
