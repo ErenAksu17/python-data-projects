@@ -1,0 +1,7 @@
+torch
+pandas
+numpy
+faker
+scikit-learn    
+streamlit
+matplotlib
