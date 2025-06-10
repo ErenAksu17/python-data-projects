@@ -7,7 +7,8 @@ OpenSky Network API kullanılarak uçakların konumu, ülke bilgisi ve hızı gi
 
 ## 📸 Örnek Ekran
 
-![flight tracker demo](https://user-images.githubusercontent.com/demo-image-link.png)
+![image](https://github.com/user-attachments/assets/a24717e7-a585-437a-9ee1-7f24f2129fde)
+
 
 ---
 
