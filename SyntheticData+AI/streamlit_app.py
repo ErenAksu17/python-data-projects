@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 # Model yükle
 model = Autoencoder()
-model.load_state_dict(torch.load("model.pth"))
+#model.load_state_dict(torch.load("model.pth"))
 model.eval()
 
 # Anomali eşiği (model eğitimi sonucu belirlenmiş olabilir)
