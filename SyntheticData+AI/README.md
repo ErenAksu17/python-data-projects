@@ -25,13 +25,6 @@ Amaç: Üretilen sentetik vibrasyon verisi üzerinde **Autoencoder tabanlı anom
 - Matplotlib
 - NumPy
 
----
-
-## 📸 Örnek Görsel
-
-> Buraya ekran görüntüsü eklersen 👇  
-> `images/ai-dashboard.png` gibi
-
 ```python
 📊 Canlı grafikler
 🔴 Anomaliler ayrı renkle gösterilir
