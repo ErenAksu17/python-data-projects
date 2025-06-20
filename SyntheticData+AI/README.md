@@ -1,23 +1,23 @@
-# 🤖 AI Tabanlı Sanal Fabrika Dashboard
+# 🤖 AI Based Virtual Factory Dashboard
 
-Bu proje, **Streamlit** kullanılarak geliştirilmiş bir canlı simülasyon sistemidir.  
-Amaç: Üretilen sentetik vibrasyon verisi üzerinde **Autoencoder tabanlı anomali tespiti** yapmak.
+This project is a real-time simulation system developed using Streamlit.
+Goal: Perform Autoencoder-based anomaly detection on synthetic vibration data.
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge.svg)](https://python-data-projects-4k6rgpquqe2jynjngz4qdb.streamlit.app)
 
 ---
 
-## 🚀 Özellikler
+## 🚀 Features
 
-- 📈 Gerçek zamanlı vibrasyon verisi simülasyonu
-- 🧠 Autoencoder model ile anomaly detection
-- 🔴 Anomaliler log olarak gösterilir
-- 📊 Canlı grafikler ile sensör takibi
-- ⏱️ 0.5 saniyelik güncellemeler ile gerçek zaman hissi
+- 📈 Real-time simulation of vibration data
+- 🧠 Anomaly detection using an Autoencoder model
+- 🔴 Anomalies are logged
+- 📊 Live charts for sensor monitoring
+- ⏱️ Updates every 0.5 seconds for real-time feel
 
 ---
 
-## 🧠 Kullanılan Teknolojiler
+## 🧠 Technologies Used
 
 - Python
 - Streamlit
@@ -26,9 +26,9 @@ Amaç: Üretilen sentetik vibrasyon verisi üzerinde **Autoencoder tabanlı anom
 - NumPy
 
 ```python
-📊 Canlı grafikler
-🔴 Anomaliler ayrı renkle gösterilir
-🧠 Model gerçek zamanlı karar verir
+📊 Live data visualization
+🔴 Anomalies highlighted in different colors
+🧠 Real-time model decision-making
 ```
 
 ---
@@ -44,19 +44,19 @@ streamlit run streamlit_app.py
 
 ---
 
-## 📁 Dosya Yapısı
+## 📁 File Structure
 
 ```
 SyntheticData+AI/
-├── streamlit_app.py     # Uygulama ana dosyası
-├── model.py             # Autoencoder modeli
-└── README.md            # Bu dosya
+├── streamlit_app.py     # Main application file
+├── model.py             # Autoencoder model
+└── README.md            # This file
 ```
 
 ---
 
-## 📌 Notlar
+## 📌 Notes
 
--Model eğitimi bu projede dahil değil — model sıfırdan başlıyor.
+-Model training is not included in this project — the model starts from scratch.
 
--model.pth dosyası gerekmediği için kaldırılmıştır.
+-model.pth file has been removed as it’s not required.
