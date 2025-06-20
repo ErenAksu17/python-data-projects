@@ -3,7 +3,7 @@
 A Python-based Streamlit app that visualizes real-time flights.
 Using the OpenSky Network API, it displays aircraft data such as location, country of origin, and speed on a map.
 
-🔗 [Live Demo](https://flight-tracker-amsgn7wuwjjhs2n4ofrd23.streamlit.app)
+🔗 [Live Demo]([https://flight-tracker-amsgn7wuwjjhs2n4ofrd23.streamlit.app](https://python-data-projects-h7phw8uqqxyfguhpruahfa.streamlit.app))
 ---
 
 ## 📸 Sample Screenshots
