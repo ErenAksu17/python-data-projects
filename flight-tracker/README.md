@@ -1,12 +1,12 @@
 # ✈️ Flight Tracker
 
-Gerçek zamanlı uçuşları görselleştiren Python tabanlı bir Streamlit uygulaması.  
-OpenSky Network API kullanılarak uçakların konumu, ülke bilgisi ve hızı gibi veriler harita üzerinde gösterilir.
+A Python-based Streamlit app that visualizes real-time flights.
+Using the OpenSky Network API, it displays aircraft data such as location, country of origin, and speed on a map.
 
-🔗 [Canlı Demo](https://flight-tracker-amsgn7wuwjjhs2n4ofrd23.streamlit.app)
+🔗 [Live Demo](https://flight-tracker-amsgn7wuwjjhs2n4ofrd23.streamlit.app)
 ---
 
-## 📸 Örnek Ekran
+## 📸 Sample Screenshots
 
 ![image](https://github.com/user-attachments/assets/64d77a2b-e80e-497b-92fb-7793e9672a99)
 
@@ -14,16 +14,16 @@ OpenSky Network API kullanılarak uçakların konumu, ülke bilgisi ve hızı gi
 
 ---
 
-## 🚀 Özellikler
+## 🚀 Features
 
-- 🌍 Gerçek zamanlı uçuş verisi çekme (OpenSky API)
-- 🗺️ Harita üzerinde uçak konumlarını gösterme
-- 📊 Çağrı kodu, ülke, irtifa, hız gibi bilgileri tablo halinde sunma
-- 🔁 Anlık veri yenileme desteği (opsiyonel)
+- 🌍 Fetches real-time flight data (via OpenSky API)
+- 🗺️ Displays aircraft positions on an interactive map
+- 📊 Shows info like callsign, origin country, altitude, and speed in a table
+- 🔁 Optional real-time data refresh support
 
 ---
 
-## 🧠 Kullanılan Teknolojiler
+## 🧠 Technologies Used
 
 - Python
 - Streamlit
@@ -34,7 +34,7 @@ OpenSky Network API kullanılarak uçakların konumu, ülke bilgisi ve hızı gi
 
 ---
 
-## 🛠️ Kurulum
+## 🛠️ Setup
 
 ```bash
 git clone https://github.com/kullaniciadiniz/flight-tracker.git
@@ -45,27 +45,27 @@ streamlit run app.py
 
 ---
 
-## 📦 Dosya Yapısı
+## 📦 Project Structure
 
 ```bash
 flight-tracker/
-├── app.py                 # Ana uygulama
-├── fetch_data.py          # API'den veri çeker
-├── visualize.py           # Harita çizimi
-├── requirements.txt       # Bağımlılıklar
-└── README.md              # Bu dosya
+├── app.py               # Main app
+├── fetch_data.py        # Fetches data from the API
+├── visualize.py         # Map rendering logic
+├── requirements.txt     # Dependencies
+└── README.md            # This file
 ```
 
 ---
 
-## 🔗 Veri Kaynağı
+## 🔗 Data Source
 
 OpenSky Network API
 
 --
 
-## ⚠️ Notlar
+## ⚠️ Notes
 
--API genel kullanımda rate limit'e takılabilir. Çok sık veri çekmekten kaçının.
+- The API has rate limits for public use. Avoid excessive requests.
 
--Gerçek zamanlı harita konumları yaklaşık 10-20 saniye gecikmeli olabilir.
+- Real-time map positions may have a delay of around 10–20 seconds.
