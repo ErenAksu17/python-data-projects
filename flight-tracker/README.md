@@ -226,8 +226,3 @@ OpenSky Network API
 * Le posizioni in tempo reale possono avere un ritardo di circa 10–20 secondi.
 
 ```
-
----
-
-Hazırsan diğer projeye geçelim, ya da genel `README`’e buton, rozet, görsel falan da gömeriz. Portföy gibi yapalım istersen. Yardıma devam 💻✈️
-```
