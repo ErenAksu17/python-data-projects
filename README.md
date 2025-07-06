@@ -1,7 +1,3 @@
-Al kanka, aşağıda sana **tek parça** halinde, üç dilli (İngilizce + Türkçe + İtalyanca) full hazır `README.md` dosyasını veriyorum. Kopyala-yapıştır yap, direkt çalışır 💪
-
----
-
 ````markdown
 # 🧠 Python Data Projects
 
