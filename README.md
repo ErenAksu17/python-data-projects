@@ -1,43 +1,53 @@
 # 🧠 Python Data Projects
 
-Python ile geliştirilmiş veri bilimi, analiz ve görselleştirme projelerim burada toplu halde yer alıyor.  
-Her klasör bağımsız bir proje içerir. Streamlit, pandas, PyTorch gibi çeşitli kütüphaneler kullanılmıştır.
+## 🌍 Languages / Diller / Lingue
+
+- [🇬🇧 English](#-english)
+- [🇹🇷 Türkçe](#-türkçe)
+- [🇮🇹 Italiano](#-italiano)
 
 ---
 
-## 📂 Projeler
+## 🇬🇧 English
 
-### ✈️ Flight Tracker
-Uçakların gerçek zamanlı konumunu haritada gösteren bir web uygulaması.  
-🔗 [Detaylı Git](./flight-tracker)  
-🌍 [Canlı Demo](https://flight-tracker-amsgn7wuwjjhs2n4ofrd23.streamlit.app)
+This repository contains my data science, analysis, and visualization projects built with Python.  
+Each folder includes a standalone project. Libraries used include Streamlit, pandas, PyTorch, and more.
 
 ---
 
-### 🤖 AI Tabanlı Sanal Fabrika Dashboard
-Sentetik vibrasyon verisi üreten ve anomali tespiti yapan simülasyon.  
-🔗 [Detaylı Git](./SyntheticData+AI)  
-🧪 [Canlı Demo](https://python-data-projects-4k6rgpquqe2jynjngz4qdb.streamlit.app)
+### 📂 Projects
+
+#### ✈️ Flight Tracker  
+A web app that displays the real-time location of aircraft on a map.  
+🔗 [Go to Project](./flight-tracker)  
+🌍 [Live Demo](https://flight-tracker-amsgn7wuwjjhs2n4ofrd23.streamlit.app)
 
 ---
 
-### 🚗 2020 Türkiye Otomotiv Pazarı Analizi
-2020 yılında Türkiye’deki araç satış verilerinin detaylı analizi ve görselleştirilmesi.  
-🔗 [Proje Git](./2020-turkey-car-market)
+#### 🤖 AI-Based Virtual Factory Dashboard  
+A simulation that generates synthetic vibration data and detects anomalies.  
+🔗 [Go to Project](./SyntheticData+AI)  
+🧪 [Live Demo](https://python-data-projects-4k6rgpquqe2jynjngz4qdb.streamlit.app)
 
 ---
 
-### 🌱 Yenilenebilir Enerji Analizi
-Enerji üretimi ve tüketim verileri üzerinden Türkiye’nin enerji dönüşüm sürecini inceleyen veri projesi.  
-🔗 [Proje Git](./renewable-energy-analyzing)
+#### 🚗 2020 Turkey Automotive Market Analysis  
+A detailed analysis and visualization of vehicle sales data in Turkey for the year 2020.  
+🔗 [Go to Project](./2020-turkey-car-market)
 
 ---
 
-## ⚙️ Kurulum
+#### 🌱 Renewable Energy Analysis  
+A data project examining Turkey's energy transition based on production and consumption data.  
+🔗 [Go to Project](./renewable-energy-analyzing)
 
-Projelerin her biri bağımsızdır:
+---
+
+### ⚙️ Setup
+
+Each project is independent:
 
 ```bash
-cd proje-adi
-pip install -r requirements.txt  # varsa
-streamlit run streamlit_app.py   # Streamlit projeleri için
+cd project-name
+pip install -r requirements.txt  # if available
+streamlit run streamlit_app.py   # for Streamlit projects
