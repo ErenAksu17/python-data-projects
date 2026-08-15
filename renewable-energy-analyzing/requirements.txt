@@ -1,0 +1,12 @@
+# Core pipeline
+pandas==3.0.2
+numpy==2.4.4
+requests==2.33.1
+
+# API + dashboard host
+fastapi==0.141.1
+uvicorn==0.52.3
+python-dotenv==1.2.2
+
+# Dev / test (installed with: pip install -r requirements-dev.txt)
+# pytest, httpx  — see requirements-dev.txt

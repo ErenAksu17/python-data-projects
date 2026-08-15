@@ -1,130 +1,156 @@
-# 🌱 Renewable Energy Analyzing
+# 🌿 Renewable Energy Analyzer
 
-## 🌍 Languages / Diller / Lingue
+Avrupa'da yenilenebilir enerjinin payını **gerçek Eurostat verisiyle** analiz eden,
+uçtan uca yeniden inşa edilmiş bir veri projesi: güvenli veri hattı → sıkılaştırılmış
+API → estetik, sade bir dashboard.
 
-- [🇬🇧 English](#-english)
-- [🇹🇷 Türkçe](#-türkçe)
-- [🇮🇹 Italiano](#-italiano)
+A rebuilt, end-to-end data project analysing the share of renewable energy in Europe
+from **real Eurostat data**: a secure pipeline → a hardened API → a clean dashboard.
 
----
-
-## 🇬🇧 English
-
-This project aims to analyze and interpret renewable energy data.  
-The goal is to explore the performance of solar, wind, and other renewable sources in a data-driven way, enabling better sustainability decisions through meaningful visualizations and insights.
+> **Diller / Languages:** [🇹🇷 Türkçe](#-türkçe) · [🇬🇧 English](#-english)
 
 ---
 
-### 🚀 Features
+## 🔑 Öne çıkan bulgular / Key findings
 
-- Analysis of real-world renewable energy production trends  
-- Data processing and visualization with Python and data science tools  
-- Reports that can support decision-making systems  
-- Energy efficiency evaluation with a sustainability-focused mindset  
-
----
-
-### 🛠️ Technologies Used
-
-- Python (Pandas, Matplotlib, Seaborn)  
-- Jupyter Notebook  
-- Renewable energy datasets  
-
----
-
-### 📈 Outcomes
-
-Some of the results are shown below.  
-More detailed findings can be found in the `.ipynb` notebook file.
-
-![image](https://github.com/user-attachments/assets/b5320464-a98b-4871-bfa8-e2d1ae04f8c0)  
-![image](https://github.com/user-attachments/assets/4e39069e-4d27-4d84-9878-6dfb7b4719ef)
-
----
-
-### 🎯 Purpose
-
-This project can serve as a starting point for anyone interested in energy policy, environmental engineering, or data science.  
-It was created both to develop technical skills and to contribute positively to the world.
+- **AB-27, 2023'te %24.6** yenilenebilir paya ulaştı; **2025 (geçici) %26.2**. Bağlayıcı
+  **2030 hedefi %42.5** — yani ~16 puan yol var.
+- Doğrusal trend hızı **yılda +0.76 puan**; bu hızla hedef 2030'da **kaçırılıyor**. Bu,
+  gerçek ve doğrulanmış (naif modeli geçen, R²≈0.99) bir tahmindir — sahte bir "×1.05" değil.
+- **İmza içgörü:** Norveç (%122), Arnavutluk (%105) ve İzlanda (%102) gibi ülkelerde
+  **elektrik** payı %100'ü aşar. Bu bir veri hatası değildir: yenilenebilir elektrik
+  *üretimi* ÷ yurtiçi *tüketim*; hidro ağırlıklı net ihracatçılarda oran 100'ü geçebilir.
+  Genel (overall) pay ise her zaman ≤ %100'dür — bu yüzden sektörleri ayırmadan ortalama almak yanlıştır.
 
 ---
 
 ## 🇹🇷 Türkçe
 
-Bu proje, yenilenebilir enerji verilerinin analiz edilmesi ve yorumlanmasını amaçlar.  
-Amaç; güneş, rüzgar ve diğer yenilenebilir kaynakların performansını veri odaklı şekilde incelemek, anlamlı görselleştirmeler ve çıkarımlarla sürdürülebilirlik konusunda daha bilinçli kararlar alınmasına katkı sağlamaktır.
+### Mimari
+
+Tek bir not defteri yerine, sorumlulukları ayrılmış katmanlı bir mimari:
+
+```
+renewable-energy-analyzing/
+├── data/
+│   ├── raw/            # Eurostat'tan indirilen ham CSV (repoya dahil → offline çalışır)
+│   └── processed/      # pipeline çıktısı JSON (yeniden üretilebilir)
+├── src/renewable/      # veri hattı (importable paket)
+│   ├── config.py       # tek doğruluk kaynağı: yollar, sabitler, ağ limitleri (sıfır sır)
+│   ├── fetch.py        # GÜVENLİ indirme (HTTPS, host allow-list, timeout, boyut sınırı)
+│   ├── clean.py        # ham → tidy long-format
+│   ├── validate.py     # ingest anında fail-loud doğrulama
+│   ├── analyze.py      # metrikler: CAGR, hedefe uzaklık, sektör, RES-E>%100 içgörüsü
+│   ├── forecast.py     # DÜRÜST tahmin: doğrusal trend + walk-forward + naif baseline
+│   └── pipeline.py     # fetch → clean → validate → analyze → JSON
+├── api/
+│   ├── main.py         # FastAPI: doğrulanmış endpoint'ler, güvenli statik servis
+│   └── security.py     # güvenlik header'ları (CSP…) + IP başına rate-limit
+├── web/                # bağımlılıksız, estetik dashboard (vanilla JS + yerel Chart.js)
+├── tests/              # 21 test: pipeline, validasyon, tahmin, API güvenliği
+└── scripts/build_data.py
+```
+
+### 🔐 Güvenlik (özellikle API)
+
+Bu proje güvenliği sonradan eklenen değil, tasarımdan gelen bir özellik olarak ele alır:
+
+**Dış veri çekimi (outbound):**
+- **HTTPS zorunlu** ve **host allow-list** (`ec.europa.eu`) → SSRF ve downgrade koruması.
+- Redirect'ler kapalı, **timeout** ve **8 MB indirme sınırı** → asılı kalma/bellek taşması yok.
+- Yanıt, yazılmadan önce **şema doğrulaması**ndan geçer; hatalı içerik iyi veriyi ezmez (atomik yazma).
+
+**API (inbound):**
+- **Girdi allow-list + Pydantic doğrulama:** ülke kodu bilinen listeyle sınırlı, bilinmeyen → jenerik 404 (girdi yansıtılmaz); sayısal parametreler sınırlı (`limit` 1–50).
+- **Sıkı güvenlik header'ları** her yanıtta: `Content-Security-Policy`, `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy`, `Permissions-Policy`, HSTS.
+- **CORS** yalnızca localhost'a kilitli (`*` değil).
+- **IP başına rate-limit** (`/api/*`), bellek-içi, bağımlılıksız.
+- **Path traversal** korumalı statik servis; **sızıntısız hata yönetimi** (stack trace yok).
+- **Sıfır sır:** anahtar gerekmez; ayarlar `.env` üzerinden (`.env` git-ignore'da).
+
+CSP not: `script-src 'self'` (satır-içi script yok — asıl XSS koruması). `style-src` yalnızca Chart.js
+canvas'ı için `'unsafe-inline'` içerir; bu bilinçli ve kabul gören bir tavizdir.
+
+### ▶️ Kurulum ve çalıştırma
+
+```bash
+# 1) Bağımlılıklar
+pip install -r requirements.txt
+
+# 2) Veriyi hazırla (önbellekteki ham CSV'yi kullanır; --refresh ile Eurostat'tan yeniler)
+python scripts/build_data.py
+
+# 3) API + dashboard'u başlat
+python -m uvicorn api.main:app --host 127.0.0.1 --port 8000
+# Tarayıcıda aç: http://127.0.0.1:8000
+
+# 4) Testler (geliştirme bağımlılıklarıyla)
+pip install -r requirements-dev.txt
+python -m pytest -q
+```
+
+### 📈 Veri ve yöntem
+
+- **Kaynak:** Eurostat `nrg_ind_ren` — yenilenebilir enerjinin brüt nihai tüketimdeki payı (%),
+  2004–2025, sektör kırılımlı (genel / elektrik / ısıtma-soğutma / ulaşım). Lisans: Eurostat açık veri (CC BY 4.0).
+- **Tahmin:** Yıla göre **doğrusal regresyon (OLS)**; **walk-forward** (genişleyen pencere, tek adım
+  ileri) ile en güncel yıllar üzerinde sınanır ve **naif** (bir önceki yıl) modeliyle kıyaslanır;
+  RMSE/MAE/MAPE ve R² raporlanır.
+- **Sınırlar:** Ülke başına ~20 yıllık gözlemle ARIMA/XGBoost gibi modeller aşırı öğrenme yapacağından
+  bilinçli olarak kullanılmadı — doğrusal trend en savunulabilir seçimdir. 2025 verisi **geçici (provisional)**.
 
 ---
 
-### 🚀 Özellikler
+## 🇬🇧 English
 
-- Gerçek dünya verileriyle enerji üretim trendlerinin analizi  
-- Python ve veri bilimi araçları kullanılarak veri işleme ve görselleştirme  
-- Karar destek sistemleri için içgörü sağlayabilecek raporlar  
-- Sürdürülebilirlik odaklı bakış açısıyla enerji verimliliği analizi  
+### Architecture
 
----
+A layered architecture with separated concerns instead of a single notebook:
+a secure pipeline (`src/renewable`) fetches, cleans, **validates**, analyses and forecasts
+Eurostat data into a processed JSON; a hardened **FastAPI** app serves it with validated
+endpoints; a dependency-light **dashboard** (vanilla JS + locally vendored Chart.js) renders it.
 
-### 🛠️ Kullanılan Teknolojiler
+### Security (API-focused)
 
-- Python (Pandas, Matplotlib, Seaborn)  
-- Jupyter Notebook  
-- Yenilenebilir enerji veri setleri  
+- **Outbound fetch:** HTTPS-only + host allow-list (anti-SSRF), no redirects, timeout, 8 MB cap,
+  response schema validation, atomic write.
+- **Inbound API:** allow-list + Pydantic input validation (unknown country → generic 404, no input
+  reflection); strict security headers (CSP, X-Frame-Options, nosniff, Referrer-Policy, HSTS);
+  CORS locked to localhost; per-IP rate limiting; path-traversal-safe static serving; generic
+  error responses (no stack traces); zero secrets (config via `.env`).
 
----
+### Run
 
-### 📈 Elde Edilen Sonuçlar
+```bash
+pip install -r requirements.txt
+python scripts/build_data.py
+python -m uvicorn api.main:app --host 127.0.0.1 --port 8000   # http://127.0.0.1:8000
+pip install -r requirements-dev.txt && python -m pytest -q
+```
 
-Elde edilen sonuçların bazıları aşağıda verilmiştir.  
-Daha fazla detaya `.ipynb` uzantılı kod dosyasından erişebilirsiniz.
+### Data & method
 
-![image](https://github.com/user-attachments/assets/b5320464-a98b-4871-bfa8-e2d1ae04f8c0)  
-![image](https://github.com/user-attachments/assets/4e39069e-4d27-4d84-9878-6dfb7b4719ef)
-
----
-
-### 🎯 Hedef
-
-Bu proje, enerji politikaları, çevre mühendisliği ya da veri bilimiyle ilgilenen herkes için bir başlangıç noktası olabilir.  
-Hem teknik becerileri geliştirmek hem de dünyaya bir nebze fayda sağlamak için yapılmıştır.
-
----
-
-## 🇮🇹 Italiano
-
-Questo progetto mira ad analizzare e interpretare i dati sull’energia rinnovabile.  
-L’obiettivo è studiare le prestazioni di fonti come solare e vento in modo basato sui dati, supportando decisioni più consapevoli sulla sostenibilità attraverso visualizzazioni significative e approfondimenti.
+Source: Eurostat `nrg_ind_ren` (renewable share of gross final energy consumption, 2004–2025,
+by sector; CC BY 4.0). Forecast: linear OLS trend on year, walk-forward validated against a naive
+baseline (RMSE/MAE/MAPE + R² reported). With ~20 annual points per country, ARIMA/XGBoost would
+overfit, so a linear trend is the honest choice; 2025 values are provisional.
 
 ---
 
-### 🚀 Caratteristiche
+## 📊 Bu proje neyi değiştirdi? / What changed vs. the original
 
-- Analisi delle tendenze di produzione di energia rinnovabile nel mondo reale  
-- Elaborazione e visualizzazione dei dati con Python e strumenti di data science  
-- Report utili ai sistemi di supporto decisionale  
-- Analisi dell'efficienza energetica con approccio orientato alla sostenibilità  
-
----
-
-### 🛠️ Tecnologie Utilizzate
-
-- Python (Pandas, Matplotlib, Seaborn)  
-- Jupyter Notebook  
-- Dataset sull’energia rinnovabile  
+| | Önce (original) | Şimdi (this rewrite) |
+|---|---|---|
+| Yapı | tek `.ipynb` | katmanlı: pipeline + API + web + testler |
+| Veri | tek yıl (2023), sabit yerel yol | 2004–2025, güvenli fetch, offline snapshot |
+| Tahmin | sahte `×1.05` (kullanılmayan sklearn import) | gerçek, doğrulanmış, naif'i geçen doğrusal trend |
+| >%100 değerler | açıklanmamış (hata sanılan) | imza içgörü olarak açıklandı (RES-E, net ihracatçı) |
+| Arayüz | statik notebook çıktıları | estetik, interaktif, güvenli dashboard |
+| Güvenlik | yok | SSRF/CSP/rate-limit/validasyon/sızıntısız hata |
+| Testler | yok | 21 test (pipeline + API güvenliği) |
+| Diller | EN/TR/**IT** | EN/TR (İtalyanca kaldırıldı) |
 
 ---
 
-### 📈 Risultati
-
-Alcuni dei risultati sono mostrati qui sotto.  
-Ulteriori dettagli si trovano nel file `.ipynb`.
-
-![image](https://github.com/user-attachments/assets/b5320464-a98b-4871-bfa8-e2d1ae04f8c0)  
-![image](https://github.com/user-attachments/assets/4e39069e-4d27-4d84-9878-6dfb7b4719ef)
-
----
-
-### 🎯 Obiettivo
-
-Questo progetto può essere un punto di partenza per chiunque sia interessato alle politiche energetiche, all'ingegneria ambientale o alla scienza dei dati.  
-È stato creato per sviluppare competenze tecniche e contribuire positivamente al mondo.
+**Kaynak / Source:** Eurostat — [nrg_ind_ren](https://ec.europa.eu/eurostat/databrowser/view/nrg_ind_ren) ·
+**Lisans / License:** Eurostat open data (CC BY 4.0)
