@@ -37,8 +37,8 @@ A detailed analysis and visualization of vehicle sales data in Turkey for the ye
 
 ---
 
-#### 🌱 Renewable Energy Analysis  
-A data project examining Turkey's energy transition based on production and consumption data.  
+#### 🌿 Renewable Energy Analyzer  
+A rebuilt, end-to-end project analysing the EU-27 renewable-energy share from real Eurostat data: a secure data pipeline, a hardened FastAPI API, and an interactive dashboard.  
 🔗 [Go to Project](./renewable-energy-analyzing)
 
 ---
@@ -87,9 +87,9 @@ Sentetik vibrasyon verisi üreten ve anomali tespiti yapan simülasyon.
 
 ---
 
-#### 🌱 Yenilenebilir Enerji Analizi
+#### 🌿 Yenilenebilir Enerji Analizi
 
-Enerji üretimi ve tüketim verileri üzerinden Türkiye’nin enerji dönüşüm sürecini inceleyen veri projesi.
+Gerçek Eurostat verisiyle AB-27 yenilenebilir enerji payını analiz eden, baştan yazılmış proje: güvenli veri hattı, sıkılaştırılmış FastAPI API ve interaktif dashboard.
 🔗 [Proje Git](./renewable-energy-analyzing)
 
 ---
@@ -138,9 +138,9 @@ Analisi dettagliata e visualizzazione dei dati di vendita di veicoli in Turchia 
 
 ---
 
-#### 🌱 Analisi dell’Energia Rinnovabile
+#### 🌿 Analisi dell’Energia Rinnovabile
 
-Un progetto che esamina la transizione energetica della Turchia basandosi su dati di produzione e consumo.
+Progetto riscritto che analizza la quota di energia rinnovabile dell’UE-27 da dati reali Eurostat: pipeline sicura, API FastAPI e dashboard interattiva.
 🔗 [Vai al Progetto](./renewable-energy-analyzing)
 
 ---
@@ -153,12 +153,4 @@ Ogni progetto è indipendente:
 cd nome-progetto
 pip install -r requirements.txt  # se presente
 streamlit run streamlit_app.py   # per i progetti Streamlit
-```
-
-```
-
----
-
-Dilersen bunu `.md` dosyası olarak sana verebilirim ya da özel logo/badge'ler de ekleyebiliriz.  
-İstiyorsan bir sonraki adımda profil README’ine de el atarız 🔥
 ```

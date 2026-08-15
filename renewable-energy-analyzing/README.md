@@ -7,7 +7,16 @@ API → estetik, sade bir dashboard.
 A rebuilt, end-to-end data project analysing the share of renewable energy in Europe
 from **real Eurostat data**: a secure pipeline → a hardened API → a clean dashboard.
 
+[![CI](https://github.com/ErenAksu17/python-data-projects/actions/workflows/ci.yml/badge.svg)](https://github.com/ErenAksu17/python-data-projects/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/python-3.12%2B-blue)
+![License](https://img.shields.io/badge/data-CC%20BY%204.0-green)
+
 > **Diller / Languages:** [🇹🇷 Türkçe](#-türkçe) · [🇬🇧 English](#-english)
+
+![Dashboard önizlemesi](docs/images/dashboard-preview.png)
+
+> Yukarıdaki görsel statik bir önizlemedir; gerçek dashboard interaktiftir (trend/tahmin,
+> ülke keşfi, sektör kırılımı). Çalıştırmak için aşağıdaki adımları izleyin.
 
 ---
 

@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    paths:
+      - "renewable-energy-analyzing/**"
+      - ".github/workflows/ci.yml"
+  pull_request:
+    paths:
+      - "renewable-energy-analyzing/**"
+      - ".github/workflows/ci.yml"
+
+jobs:
+  test:
+    name: renewable-energy-analyzing · pytest
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: renewable-energy-analyzing
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: Build processed data (offline, from committed raw snapshot)
+        run: python scripts/build_data.py
+
+      - name: Run tests
+        run: python -m pytest -q
