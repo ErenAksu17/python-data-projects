@@ -23,8 +23,11 @@
   --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
+/* Dark tokens, defined once and applied to all three viewer theme states:
+   OS-dark (unless an explicit light choice overrides) and an explicit dark
+   toggle. Light stays the bare :root above. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #0d130f;
     --bg-grad-1: #0e1611;
     --bg-grad-2: #0b110d;
@@ -41,6 +44,23 @@
     --danger: #e07a7a;
     --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
   }
+}
+:root[data-theme="dark"] {
+  --bg: #0d130f;
+  --bg-grad-1: #0e1611;
+  --bg-grad-2: #0b110d;
+  --surface: #141c17;
+  --surface-2: #182219;
+  --border: #24312a;
+  --text: #e7f0e9;
+  --text-muted: #93a89a;
+  --brand: #35c07f;
+  --brand-strong: #46d18e;
+  --brand-soft: #14342380;
+  --accent: #2bb3a6;
+  --warn: #e0a15c;
+  --danger: #e07a7a;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.35);
 }
 
 * { box-sizing: border-box; }
