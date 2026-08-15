@@ -11,6 +11,8 @@ from **real Eurostat data**: a secure pipeline → a hardened API → a clean da
 ![Python](https://img.shields.io/badge/python-3.12%2B-blue)
 ![License](https://img.shields.io/badge/data-CC%20BY%204.0-green)
 
+🌍 **Canlı demo / Live demo →** https://claude.ai/code/artifact/4487d571-f1fd-4518-b94a-4050f5d0c9be
+
 > **Diller / Languages:** [🇹🇷 Türkçe](#-türkçe) · [🇬🇧 English](#-english)
 
 ![Dashboard önizlemesi](docs/images/dashboard-preview.png)

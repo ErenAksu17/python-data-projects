@@ -39,7 +39,8 @@ A detailed analysis and visualization of vehicle sales data in Turkey for the ye
 
 #### 🌿 Renewable Energy Analyzer  
 A rebuilt, end-to-end project analysing the EU-27 renewable-energy share from real Eurostat data: a secure data pipeline, a hardened FastAPI API, and an interactive dashboard.  
-🔗 [Go to Project](./renewable-energy-analyzing)
+🔗 [Go to Project](./renewable-energy-analyzing)  
+🌍 [Live Demo](https://claude.ai/code/artifact/4487d571-f1fd-4518-b94a-4050f5d0c9be)
 
 ---
 
@@ -91,6 +92,7 @@ Sentetik vibrasyon verisi üreten ve anomali tespiti yapan simülasyon.
 
 Gerçek Eurostat verisiyle AB-27 yenilenebilir enerji payını analiz eden, baştan yazılmış proje: güvenli veri hattı, sıkılaştırılmış FastAPI API ve interaktif dashboard.
 🔗 [Proje Git](./renewable-energy-analyzing)
+🌍 [Canlı Demo](https://claude.ai/code/artifact/4487d571-f1fd-4518-b94a-4050f5d0c9be)
 
 ---
 
@@ -142,6 +144,7 @@ Analisi dettagliata e visualizzazione dei dati di vendita di veicoli in Turchia 
 
 Progetto riscritto che analizza la quota di energia rinnovabile dell’UE-27 da dati reali Eurostat: pipeline sicura, API FastAPI e dashboard interattiva.
 🔗 [Vai al Progetto](./renewable-energy-analyzing)
+🌍 [Demo Live](https://claude.ai/code/artifact/4487d571-f1fd-4518-b94a-4050f5d0c9be)
 
 ---
 
