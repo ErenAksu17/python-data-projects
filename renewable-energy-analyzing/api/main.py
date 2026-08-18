@@ -34,7 +34,8 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(API_DIR))
 from renewable import config  # noqa: E402
 
-WEB_DIR = ROOT / "web"
+# The built React (Vite) single-file frontend. Run `npm run build` in frontend/.
+WEB_DIR = ROOT / "frontend" / "dist"
 ALLOWED_GEOS = set(config.GEO_NAMES.keys())
 
 app = FastAPI(
@@ -144,5 +145,13 @@ def forecast() -> dict:
     return _DATA["eu"]["forecast"]
 
 
+@app.get("/api/dataset")
+def dataset() -> dict:
+    """Full processed payload — read-only bootstrap for the SPA frontend."""
+    return _DATA
+
+
 # ---- Static dashboard (mounted last so /api and /healthz win) -------------- #
-app.mount("/", StaticFiles(directory=str(WEB_DIR), html=True), name="web")
+# Only mounted when the frontend has been built; the API works regardless.
+if WEB_DIR.is_dir():
+    app.mount("/", StaticFiles(directory=str(WEB_DIR), html=True), name="web")

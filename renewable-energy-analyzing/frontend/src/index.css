@@ -1,0 +1,144 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
+
+/* ------------------------------------------------------------------ *
+ * Renewable Energy Analyzer — a vivid, energy-themed shadcn palette.
+ * Emerald primary (renewable), with a six-stop rainbow chart ramp so
+ * every series reads distinctly. Light + dark kept in sync at token level.
+ * ------------------------------------------------------------------ */
+:root {
+  --radius: 0.85rem;
+
+  --background: oklch(0.991 0.006 150);
+  --foreground: oklch(0.23 0.03 162);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.23 0.03 162);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.23 0.03 162);
+
+  --primary: oklch(0.63 0.15 158);
+  --primary-foreground: oklch(0.99 0.01 150);
+
+  --secondary: oklch(0.95 0.025 165);
+  --secondary-foreground: oklch(0.28 0.04 162);
+
+  --muted: oklch(0.965 0.012 160);
+  --muted-foreground: oklch(0.52 0.03 160);
+
+  --accent: oklch(0.92 0.06 190);
+  --accent-foreground: oklch(0.28 0.05 200);
+
+  --destructive: oklch(0.585 0.2 22);
+  --destructive-foreground: oklch(0.99 0.01 20);
+
+  --success: oklch(0.63 0.15 158);
+  --warning: oklch(0.72 0.15 75);
+
+  --border: oklch(0.9 0.014 165);
+  --input: oklch(0.9 0.014 165);
+  --ring: oklch(0.63 0.15 158);
+
+  --chart-1: oklch(0.64 0.16 156);   /* emerald */
+  --chart-2: oklch(0.68 0.13 196);   /* teal    */
+  --chart-3: oklch(0.76 0.15 78);    /* amber   */
+  --chart-4: oklch(0.6 0.2 295);     /* violet  */
+  --chart-5: oklch(0.66 0.16 240);   /* sky     */
+  --chart-6: oklch(0.64 0.21 18);    /* rose    */
+}
+
+.dark,
+[data-theme="dark"] {
+  --background: oklch(0.19 0.022 168);
+  --foreground: oklch(0.95 0.012 150);
+
+  --card: oklch(0.23 0.024 168);
+  --card-foreground: oklch(0.95 0.012 150);
+  --popover: oklch(0.23 0.024 168);
+  --popover-foreground: oklch(0.95 0.012 150);
+
+  --primary: oklch(0.72 0.15 158);
+  --primary-foreground: oklch(0.19 0.03 165);
+
+  --secondary: oklch(0.28 0.03 168);
+  --secondary-foreground: oklch(0.94 0.012 150);
+
+  --muted: oklch(0.27 0.025 168);
+  --muted-foreground: oklch(0.72 0.03 160);
+
+  --accent: oklch(0.34 0.06 195);
+  --accent-foreground: oklch(0.94 0.03 190);
+
+  --destructive: oklch(0.68 0.19 22);
+  --destructive-foreground: oklch(0.98 0.01 20);
+
+  --success: oklch(0.72 0.15 158);
+  --warning: oklch(0.78 0.15 78);
+
+  --border: oklch(0.32 0.02 168);
+  --input: oklch(0.34 0.02 168);
+  --ring: oklch(0.72 0.15 158);
+
+  --chart-1: oklch(0.72 0.16 156);
+  --chart-2: oklch(0.74 0.13 196);
+  --chart-3: oklch(0.82 0.15 80);
+  --chart-4: oklch(0.7 0.2 296);
+  --chart-5: oklch(0.74 0.15 240);
+  --chart-6: oklch(0.72 0.2 18);
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-6: var(--chart-6);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Ambient page background: soft radial energy glows behind the content. */
+.app-bg {
+  background:
+    radial-gradient(1100px 520px at 82% -8%, color-mix(in oklab, var(--chart-1) 22%, transparent), transparent 60%),
+    radial-gradient(900px 480px at -6% 4%, color-mix(in oklab, var(--chart-2) 18%, transparent), transparent 55%),
+    radial-gradient(700px 500px at 50% 120%, color-mix(in oklab, var(--chart-4) 12%, transparent), transparent 60%);
+}

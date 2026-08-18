@@ -9,6 +9,7 @@ from **real Eurostat data**: a secure pipeline → a hardened API → a clean da
 
 [![CI](https://github.com/ErenAksu17/python-data-projects/actions/workflows/ci.yml/badge.svg)](https://github.com/ErenAksu17/python-data-projects/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.12%2B-blue)
+![Frontend](https://img.shields.io/badge/React%20%2B%20Vite%20%2B%20Tailwind%20%2B%20shadcn%2Fui-38bdf8)
 ![License](https://img.shields.io/badge/data-CC%20BY%204.0-green)
 
 🌍 **Canlı demo / Live demo →** https://claude.ai/code/artifact/4487d571-f1fd-4518-b94a-4050f5d0c9be
@@ -57,10 +58,19 @@ renewable-energy-analyzing/
 ├── api/
 │   ├── main.py         # FastAPI: doğrulanmış endpoint'ler, güvenli statik servis
 │   └── security.py     # güvenlik header'ları (CSP…) + IP başına rate-limit
-├── web/                # bağımlılıksız, estetik dashboard (vanilla JS + yerel Chart.js)
+├── frontend/           # React + Vite + Tailwind v4 + shadcn/ui + Recharts arayüz
+│   └── src/            # bileşenler, tema, veri katmanı (window.__DATA__ ↔ /api)
 ├── tests/              # 21 test: pipeline, validasyon, tahmin, API güvenliği
-└── scripts/build_data.py
+└── scripts/
+    ├── build_data.py       # veri hattı
+    ├── build_standalone.py # tek dosyalık çevrimdışı/artifact sürümü
+    └── make_preview.py     # README önizleme görseli
 ```
+
+**Arayüz:** shadcn/ui bileşenleri (Card, Badge, Select, Progress) + Recharts
+grafikleri, canlı bir renk paleti ve açık/koyu tema. Sunucu için harici-varlıklı
+build (CSP-temiz); çevrimdışı/artifact için tek-dosya build (`window.__DATA__`
+gömülü). FastAPI aynı arayüzü servis eder ve `/api/dataset` ile besler.
 
 ### 🔐 Güvenlik (özellikle API)
 
@@ -79,8 +89,10 @@ Bu proje güvenliği sonradan eklenen değil, tasarımdan gelen bir özellik ola
 - **Path traversal** korumalı statik servis; **sızıntısız hata yönetimi** (stack trace yok).
 - **Sıfır sır:** anahtar gerekmez; ayarlar `.env` üzerinden (`.env` git-ignore'da).
 
-CSP not: `script-src 'self'` (satır-içi script yok — asıl XSS koruması). `style-src` yalnızca Chart.js
-canvas'ı için `'unsafe-inline'` içerir; bu bilinçli ve kabul gören bir tavizdir.
+CSP not: `script-src 'self'` (satır-içi script yok — asıl XSS koruması; bu yüzden
+sunucu, tek-dosya değil **harici-varlıklı** React build'ini servis eder). `style-src`
+yalnızca `'unsafe-inline'` içerir (Recharts satır-içi stil enjekte eder); bu bilinçli
+ve kabul gören bir tavizdir.
 
 ### ▶️ Kurulum ve çalıştırma
 
@@ -91,11 +103,15 @@ pip install -r requirements.txt
 # 2) Veriyi hazırla (önbellekteki ham CSV'yi kullanır; --refresh ile Eurostat'tan yeniler)
 python scripts/build_data.py
 
-# 3) API + dashboard'u başlat
+# 3) Arayüzü derle (React + Vite + Tailwind + shadcn/ui)
+cd frontend && npm install && npm run build && cd ..
+#   (çevrimdışı/artifact için: npm run build:standalone && python scripts/build_standalone.py)
+
+# 4) API + dashboard'u başlat
 python -m uvicorn api.main:app --host 127.0.0.1 --port 8000
 # Tarayıcıda aç: http://127.0.0.1:8000
 
-# 4) Testler (geliştirme bağımlılıklarıyla)
+# 5) Testler (geliştirme bağımlılıklarıyla)
 pip install -r requirements-dev.txt
 python -m pytest -q
 ```

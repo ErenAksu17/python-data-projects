@@ -20,3 +20,16 @@ Thumbs.db
 # Processed artifacts are rebuildable from raw via scripts/build_data.py.
 # The raw snapshot IS committed so the project runs offline out of the box.
 data/processed/*.json
+
+# Node / frontend build outputs (also covered by frontend/.gitignore)
+frontend/node_modules/
+frontend/dist/
+frontend/dist-single/
+
+# The repo-root .gitignore has a Python-style `lib/` rule; re-include the
+# frontend source lib dir so utils/types/data are tracked.
+!frontend/src/lib/
+
+# The single-file offline demo (docs/standalone.html) IS committed;
+# the artifact fragment is a transient publish input.
+docs/artifact.html
