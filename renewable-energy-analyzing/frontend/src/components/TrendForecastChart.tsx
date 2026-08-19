@@ -109,6 +109,7 @@ export function TrendForecastChart({ data }: { data: Dataset }) {
               connectNulls
               dot={false}
               activeDot={{ r: 4 }}
+              isAnimationActive={false}
             />
             {/* Forecast */}
             <Line
@@ -119,6 +120,7 @@ export function TrendForecastChart({ data }: { data: Dataset }) {
               strokeDasharray="6 4"
               dot={{ r: 3 }}
               connectNulls
+              isAnimationActive={false}
             />
             <ReferenceLine
               y={target.pct}

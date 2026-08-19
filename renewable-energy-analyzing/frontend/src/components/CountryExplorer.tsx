@@ -83,6 +83,7 @@ export function CountryExplorer({ data }: { data: Dataset }) {
               fill="url(#fillCountry)"
               dot={false}
               activeDot={{ r: 4 }}
+              isAnimationActive={false}
             />
           </AreaChart>
         </ChartContainer>

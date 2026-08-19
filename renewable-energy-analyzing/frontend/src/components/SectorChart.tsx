@@ -36,7 +36,7 @@ export function SectorChart({ data }: { data: Dataset }) {
               cursor={{ fill: "var(--muted)", opacity: 0.4 }}
               content={<ChartTooltipContent />}
             />
-            <Bar dataKey="value" name="Pay" radius={[8, 8, 0, 0]} maxBarSize={72}>
+            <Bar dataKey="value" name="Pay" radius={[8, 8, 0, 0]} maxBarSize={72} isAnimationActive={false}>
               {rows.map((_, i) => (
                 <Cell key={i} fill={COLORS[i % COLORS.length]} />
               ))}

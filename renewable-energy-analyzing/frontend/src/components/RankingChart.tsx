@@ -43,7 +43,7 @@ export function RankingChart({ data }: { data: Dataset }) {
               cursor={{ fill: "var(--muted)", opacity: 0.4 }}
               content={<ChartTooltipContent />}
             />
-            <Bar dataKey="value" name="Pay" radius={[0, 6, 6, 0]} maxBarSize={22}>
+            <Bar dataKey="value" name="Pay" radius={[0, 6, 6, 0]} maxBarSize={22} isAnimationActive={false}>
               {rows.map((_, i) => (
                 <Cell key={i} fill={PALETTE[i % PALETTE.length]} />
               ))}
