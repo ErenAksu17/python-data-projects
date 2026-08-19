@@ -15,6 +15,7 @@
 ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=flat-square&logo=jupyter&logoColor=white)
 
 [![CI](https://github.com/ErenAksu17/python-data-projects/actions/workflows/ci.yml/badge.svg)](https://github.com/ErenAksu17/python-data-projects/actions)
+[![Lisans](https://img.shields.io/badge/Lisans-MIT-22c55e?style=flat-square)](LICENSE)
 
 **Diller / Languages:** [🇹🇷 Türkçe](#-türkçe) · [🇬🇧 English](#-english)
 
@@ -104,6 +105,16 @@ Each project's own README documents how to run it.
   *(Virtual Factory's simulator is a deliberate exception: it exists to produce faults whose physics is known.)*
 - **Honest output.** Forecasts are validated; a forecast that cannot beat a naive baseline is not published.
 - **Tests are a gate.** pytest + CI are required on the active projects.
+
+---
+
+## 📄 Lisans / License
+
+[MIT](LICENSE) — © 2025-2026 Eren AKSU. Kod serbestçe kullanılabilir; telif bildirimini koruyun.
+Analiz edilen **veri kümeleri kendi kaynaklarının lisansına tabidir** (Eurostat: CC BY 4.0,
+OpenSky: kendi kullanım şartları) — lisans bunları kapsamaz.
+
+*Code is MIT; the analysed datasets remain under their own source licences.*
 
 ---
 
