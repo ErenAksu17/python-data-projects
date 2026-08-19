@@ -1,0 +1,54 @@
+{
+ "generated_utc": "2026-08-19T00:33:36+00:00",
+ "note": "Each stage is trained and thresholded with the same policy; only the listed change differs. v1 reproduces the original project's design.",
+ "stages": [
+  {
+   "name": "v1_scalar_ae",
+   "description": "original design: autoencoder over single raw samples, scaler fitted on the whole dataset, window scored by mean per-sample error",
+   "parameters": 445,
+   "roc_auc": 0.9634812500000001,
+   "pr_auc": 0.9849709866896572,
+   "precision": 0.9985052316890882,
+   "recall": 0.835,
+   "f1": 0.9094622191967325,
+   "false_alarm_rate": 0.0025,
+   "recall_incipient": 0.4444444444444444
+  },
+  {
+   "name": "v2_features",
+   "description": "26 diagnostic features, healthy-only training, plain MSE score",
+   "parameters": 1230,
+   "roc_auc": 0.98375625,
+   "pr_auc": 0.9935593436172002,
+   "precision": 0.99734395750332,
+   "recall": 0.93875,
+   "f1": 0.9671603348358017,
+   "false_alarm_rate": 0.005,
+   "recall_incipient": 0.7822222222222223
+  },
+  {
+   "name": "v3_residual_norm",
+   "description": "+ residual normalisation against the healthy reconstruction error",
+   "parameters": 1230,
+   "roc_auc": 0.9830718749999999,
+   "pr_auc": 0.9932329005587524,
+   "precision": 1.0,
+   "recall": 0.93625,
+   "f1": 0.9670755326016786,
+   "false_alarm_rate": 0.0,
+   "recall_incipient": 0.7733333333333333
+  },
+  {
+   "name": "v4_latent6",
+   "description": "+ latent width 6, selected on the development split (shipped model)",
+   "parameters": 1264,
+   "roc_auc": 0.9816843749999999,
+   "pr_auc": 0.9925921903106463,
+   "precision": 0.9934123847167325,
+   "recall": 0.9425,
+   "f1": 0.9672867222578576,
+   "false_alarm_rate": 0.0125,
+   "recall_incipient": 0.7955555555555556
+  }
+ ]
+}

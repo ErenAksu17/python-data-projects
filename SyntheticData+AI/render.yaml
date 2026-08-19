@@ -1,0 +1,28 @@
+# Render blueprint: one Docker service that serves both the API and the
+# dashboard. The image installs runtime dependencies only, so a free-tier
+# instance wakes from sleep in seconds rather than the minute-plus a PyTorch
+# image would take.
+#
+#   render blueprint launch    (or point Render at this file in the repo)
+
+services:
+  - type: web
+    name: virtual-factory
+    runtime: docker
+    plan: free
+    region: frankfurt
+    rootDir: SyntheticData+AI
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /healthz
+    autoDeploy: false
+    envVars:
+      # Same-origin deployment, so the allowlist only matters if the dashboard
+      # is also published separately (GitHub Pages / Cloudflare Pages).
+      - key: VFACTORY_ALLOWED_ORIGINS
+        value: https://erenaksu17.github.io
+      - key: VFACTORY_RATE_LIMIT
+        value: "120"
+      - key: VFACTORY_MAX_STREAMS
+        value: "16"
+      - key: VFACTORY_MAX_BODY_BYTES
+        value: "2097152"

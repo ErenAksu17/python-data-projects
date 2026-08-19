@@ -1,0 +1,98 @@
+name: SyntheticData+AI
+
+on:
+  push:
+    paths:
+      - "SyntheticData+AI/**"
+      - ".github/workflows/synthetic-data-ai.yml"
+  pull_request:
+    paths:
+      - "SyntheticData+AI/**"
+      - ".github/workflows/synthetic-data-ai.yml"
+  workflow_dispatch:
+
+# The dashboard deploy needs Pages; nothing here writes to the repo.
+permissions:
+  contents: read
+
+concurrency:
+  group: synthetic-data-ai-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: SyntheticData+AI
+
+jobs:
+  python:
+    name: pytest
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      # Serving dependencies plus the dev tools. PyTorch is only needed to
+      # retrain, and the committed JSON bundle is what the tests exercise --
+      # so CI stays fast and the torch/numpy agreement test skips cleanly.
+      - name: Install dependencies
+        run: pip install -r requirements.txt pytest httpx ruff
+
+      - name: Lint
+        run: ruff check src tests scripts
+
+      - name: Run tests
+        run: python -m pytest -q
+
+  frontend:
+    name: build + Python/TypeScript parity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: SyntheticData+AI/frontend/package-lock.json
+
+      - name: Install dependencies
+        working-directory: SyntheticData+AI/frontend
+        run: npm ci --no-audit --no-fund
+
+      # Guards the browser-side port: if the TypeScript feature pipeline ever
+      # drifts from the Python one, the offline demo would quietly report
+      # different numbers than the API. This fails the build instead.
+      - name: Check TypeScript/Python parity
+        working-directory: SyntheticData+AI/frontend
+        run: npm run check:parity
+
+      - name: Type-check and build
+        working-directory: SyntheticData+AI/frontend
+        env:
+          BASE_PATH: /python-data-projects/
+        run: npm run build
+
+      - name: Upload dashboard
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: SyntheticData+AI/frontend/dist
+
+  deploy:
+    name: deploy dashboard to Pages
+    if: github.ref == 'refs/heads/main'
+    needs: [python, frontend]
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

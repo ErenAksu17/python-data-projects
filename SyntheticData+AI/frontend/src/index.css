@@ -1,0 +1,191 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
+
+/* ------------------------------------------------------------------ *
+ * Virtual Factory -- a control-room palette.
+ *
+ * Graphite surfaces with an electric-cyan instrument accent, amber for
+ * "watch" and coral for "alarm", so machine state reads at a glance from
+ * across a room. Chart ramp is six distinct hues that survive both themes.
+ * ------------------------------------------------------------------ */
+:root {
+  --radius: 0.8rem;
+
+  --background: oklch(0.985 0.004 240);
+  --foreground: oklch(0.21 0.028 250);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.028 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.21 0.028 250);
+
+  --primary: oklch(0.62 0.13 215);
+  --primary-foreground: oklch(0.99 0.005 220);
+
+  --secondary: oklch(0.945 0.014 235);
+  --secondary-foreground: oklch(0.28 0.03 248);
+
+  --muted: oklch(0.958 0.008 240);
+  --muted-foreground: oklch(0.5 0.022 245);
+
+  --accent: oklch(0.92 0.05 205);
+  --accent-foreground: oklch(0.27 0.05 235);
+
+  --destructive: oklch(0.585 0.21 25);
+  --destructive-foreground: oklch(0.99 0.01 25);
+
+  --success: oklch(0.62 0.15 158);
+  --warning: oklch(0.74 0.15 72);
+  --critical: oklch(0.585 0.21 25);
+
+  --border: oklch(0.895 0.012 240);
+  --input: oklch(0.895 0.012 240);
+  --ring: oklch(0.62 0.13 215);
+
+  --chart-1: oklch(0.66 0.14 210);  /* cyan   -- live signal      */
+  --chart-2: oklch(0.72 0.16 68);   /* amber  -- threshold        */
+  --chart-3: oklch(0.6 0.2 300);    /* violet -- envelope         */
+  --chart-4: oklch(0.62 0.19 22);   /* coral  -- anomaly          */
+  --chart-5: oklch(0.64 0.15 158);  /* green  -- healthy          */
+  --chart-6: oklch(0.6 0.16 265);   /* indigo -- secondary series */
+
+  /* Instrument glow, used sparingly on live readouts. */
+  --glow: oklch(0.62 0.13 215 / 0.25);
+}
+
+.dark,
+[data-theme="dark"] {
+  --background: oklch(0.175 0.018 252);
+  --foreground: oklch(0.945 0.008 235);
+
+  --card: oklch(0.215 0.02 252);
+  --card-foreground: oklch(0.945 0.008 235);
+  --popover: oklch(0.215 0.02 252);
+  --popover-foreground: oklch(0.945 0.008 235);
+
+  --primary: oklch(0.75 0.14 205);
+  --primary-foreground: oklch(0.17 0.03 240);
+
+  --secondary: oklch(0.27 0.024 250);
+  --secondary-foreground: oklch(0.93 0.01 235);
+
+  --muted: oklch(0.26 0.022 250);
+  --muted-foreground: oklch(0.68 0.02 240);
+
+  --accent: oklch(0.32 0.05 220);
+  --accent-foreground: oklch(0.93 0.02 220);
+
+  --destructive: oklch(0.68 0.2 24);
+  --destructive-foreground: oklch(0.16 0.03 25);
+
+  --success: oklch(0.72 0.16 158);
+  --warning: oklch(0.8 0.15 74);
+  --critical: oklch(0.68 0.2 24);
+
+  --border: oklch(0.31 0.022 250);
+  --input: oklch(0.31 0.022 250);
+  --ring: oklch(0.75 0.14 205);
+
+  --chart-1: oklch(0.76 0.14 205);
+  --chart-2: oklch(0.82 0.15 74);
+  --chart-3: oklch(0.72 0.18 300);
+  --chart-4: oklch(0.7 0.19 24);
+  --chart-5: oklch(0.75 0.16 158);
+  --chart-6: oklch(0.72 0.15 268);
+
+  --glow: oklch(0.75 0.14 205 / 0.3);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-critical: var(--critical);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-chart-6: var(--chart-6);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Numbers that change every frame must not reflow the layout around them. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  /* A faint grid, like a mimic panel behind the instruments. */
+  .control-room {
+    background-image:
+      radial-gradient(
+        ellipse 80% 55% at 50% -10%,
+        color-mix(in oklch, var(--primary) 14%, transparent),
+        transparent 70%
+      ),
+      linear-gradient(to right, color-mix(in oklch, var(--border) 55%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklch, var(--border) 55%, transparent) 1px, transparent 1px);
+    background-size: 100% 100%, 46px 46px, 46px 46px;
+  }
+
+  .live-dot {
+    box-shadow: 0 0 0 0 var(--glow);
+    animation: live-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes live-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 var(--glow);
+    }
+    50% {
+      box-shadow: 0 0 0 6px transparent;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-dot {
+    animation: none;
+  }
+}

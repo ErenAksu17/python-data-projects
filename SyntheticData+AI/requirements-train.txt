@@ -1,0 +1,4 @@
+# Training and benchmarking only. Never installed in production.
+-r requirements.txt
+torch>=2.2
+scikit-learn>=1.4

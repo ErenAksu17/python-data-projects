@@ -1,7 +1,6 @@
-torch
-pandas
-numpy
-faker
-scikit-learn    
-streamlit
-matplotlib
+# Runtime dependencies for the API only -- no PyTorch, no scikit-learn.
+# This is what the deployed container installs.
+fastapi>=0.115
+uvicorn[standard]>=0.30
+numpy>=1.26
+pydantic>=2.7

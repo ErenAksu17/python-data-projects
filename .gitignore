@@ -14,8 +14,11 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
-lib64/
+# Anchored to the repository root: these are Python build/venv directories.
+# Unanchored they also swallow frontend source trees such as
+# */frontend/src/lib/, which git then silently refuses to track.
+/lib/
+/lib64/
 parts/
 sdist/
 var/
