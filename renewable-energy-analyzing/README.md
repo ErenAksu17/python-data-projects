@@ -182,3 +182,9 @@ overfit, so a linear trend is the honest choice; 2025 values are provisional.
 
 **Kaynak / Source:** Eurostat — [nrg_ind_ren](https://ec.europa.eu/eurostat/databrowser/view/nrg_ind_ren) ·
 **Lisans / License:** Eurostat open data (CC BY 4.0)
+
+---
+
+<div align="center">
+<sub>📂 <a href="../README.md">Python Data Projects</a> koleksiyonunun bir parçasıdır.</sub>
+</div>

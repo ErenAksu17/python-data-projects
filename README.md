@@ -1,159 +1,112 @@
+<div align="center">
+
 # 🧠 Python Data Projects
 
-## 🌍 Languages / Diller / Lingue
+**Veri bilimi, analiz ve görselleştirme projelerim — hepsi tek çatı altında.**
 
-- [🇬🇧 English](#-english)
-- [🇹🇷 Türkçe](#-türkçe)
-- [🇮🇹 Italiano](#-italiano)
+*My data-science, analysis and visualization work, collected in one repository.*
 
----
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![pandas](https://img.shields.io/badge/pandas-150458?style=flat-square&logo=pandas&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=flat-square&logo=jupyter&logoColor=white)
 
-## 🇬🇧 English
+[![CI](https://github.com/ErenAksu17/python-data-projects/actions/workflows/ci.yml/badge.svg)](https://github.com/ErenAksu17/python-data-projects/actions)
 
-This repository contains my data science, analysis, and visualization projects built with Python.  
-Each folder includes a standalone project. Libraries used include Streamlit, pandas, PyTorch, and more.
+**Diller / Languages:** [🇹🇷 Türkçe](#-türkçe) · [🇬🇧 English](#-english)
 
----
-
-### 📂 Projects
-
-#### ✈️ Flight Tracker  
-A web app that displays the real-time location of aircraft on a map.  
-🔗 [Go to Project](./flight-tracker)  
-🌍 [Live Demo](https://flight-tracker-amsgn7wuwjjhs2n4ofrd23.streamlit.app)
+</div>
 
 ---
 
-#### 🤖 AI-Based Virtual Factory Dashboard  
-A simulation that generates synthetic vibration data and detects anomalies.  
-🔗 [Go to Project](./SyntheticData+AI)  
-🧪 [Live Demo](https://python-data-projects-4k6rgpquqe2jynjngz4qdb.streamlit.app)
+## 📂 Projeler / Projects
+
+Her klasör kendi başına çalışan bağımsız bir projedir.
+*Each folder is a standalone project with its own README and dependencies.*
+
+| Proje | Ne yapıyor / What it does | Yığın / Stack | Durum |
+|:--|:--|:--|:--|
+| 📡 **[Virtual Factory](./SyntheticData%2BAI)**<br/><sub>Titreşim anomali tespiti</sub> | Döner makineler için durum izleme: fizik temelli rulman titreşim simülatörü, **yalnızca sağlıklı veriyle** eğitilmiş tek sınıflı otokodlayıcı, zarf spektrumuyla arıza teşhisi ve backend olsun olmasın çalışan canlı arayüz.<br/><sub>*Condition monitoring: physics-based bearing simulator, one-class autoencoder, envelope-spectrum diagnosis, live dashboard.*</sub> | `PyTorch` `FastAPI` `WebSocket` `React` | ✅ Aktif |
+| 🌿 **[Renewable Energy Analyzer](./renewable-energy-analyzing)**<br/><sub>AB-27 yenilenebilir enerji</sub> | **Gerçek Eurostat verisiyle** AB-27 yenilenebilir enerji payı analizi: güvenli veri hattı, sıkılaştırılmış FastAPI API'si ve interaktif dashboard. Tahmin dürüst — naif modeli geçen, doğrulanmış bir trend.<br/><sub>*EU-27 renewable share from real Eurostat data: secure pipeline, hardened API, interactive dashboard.*</sub> | `pandas` `FastAPI` `React` `Tailwind` | ✅ Aktif |
+| ✈️ **[Flight Tracker](./flight-tracker)**<br/><sub>Canlı uçuş takibi</sub> | OpenSky Network API'siyle uçakların konumunu, kalkış ülkesini ve hızını harita üzerinde gösterir.<br/><sub>*Real-time aircraft positions on an interactive map, via the OpenSky Network API.*</sub> | `Streamlit` `Folium` `OpenSky` | 🔧 Yeniden yazılıyor |
+| 🚗 **[2020 Otomobil Pazarı](./2020-turkey-car-market)**<br/><sub>Pazar analizi</sub> | 2020'de Türkiye'de satılan otomobillerin marka, model ve segment kırılımıyla analizi ve görselleştirilmesi.<br/><sub>*Brand-, model- and segment-level analysis of the 2020 Turkish car market.*</sub> | `pandas` `Matplotlib` `Seaborn` | 📘 Tamamlandı |
+
+> 🔧 **Flight Tracker notu:** Streamlit sürümü çalışıyor, ancak eski barındırma bağlantısı
+> kapatıldı. Proje şu anda FastAPI + Leaflet olarak yeniden yazılıyor; yeni sürüm hazır
+> olduğunda bu klasör güncellenecek.
 
 ---
 
-#### 🚗 2020 Turkey Automotive Market Analysis  
-A detailed analysis and visualization of vehicle sales data in Turkey for the year 2020.  
-🔗 [Go to Project](./2020-turkey-car-market)
+## 🗂️ Depo yapısı / Repository layout
 
----
-
-#### 🌿 Renewable Energy Analyzer  
-A rebuilt, end-to-end project analysing the EU-27 renewable-energy share from real Eurostat data: a secure data pipeline, a hardened FastAPI API, and an interactive dashboard.  
-🔗 [Go to Project](./renewable-energy-analyzing)  
-🌍 [Live Demo](https://claude.ai/code/artifact/4487d571-f1fd-4518-b94a-4050f5d0c9be)
-
----
-
-### ⚙️ Setup
-
-Each project is independent:
-
-```bash
-cd project-name
-pip install -r requirements.txt  # if available
-streamlit run streamlit_app.py   # for Streamlit projects
-````
+```text
+python-data-projects/
+├── SyntheticData+AI/            # 📡 Virtual Factory — titreşim anomali tespiti
+│   ├── src/                     #    simülatör, öznitelik çıkarımı, model, API
+│   ├── frontend/                #    React + Vite + Tailwind arayüz
+│   ├── tests/                   #    pytest + TS↔Python sayısal parite testi
+│   └── docs/
+├── renewable-energy-analyzing/  # 🌿 Eurostat yenilenebilir enerji analizi
+│   ├── src/                     #    veri hattı ve analiz
+│   ├── api/                     #    sıkılaştırılmış FastAPI servisi
+│   ├── frontend/                #    interaktif dashboard
+│   └── tests/
+├── flight-tracker/              # ✈️ Canlı uçuş haritası
+├── 2020-turkey-car-market/      # 🚗 Jupyter not defteri analizi
+└── README.md                    # 📄 Bu dosya
+```
 
 ---
 
 ## 🇹🇷 Türkçe
 
-Python ile geliştirilmiş veri bilimi, analiz ve görselleştirme projelerim burada toplu halde yer alıyor.
-Her klasör bağımsız bir proje içerir. Streamlit, pandas, PyTorch gibi çeşitli kütüphaneler kullanılmıştır.
-
----
-
-### 📂 Projeler
-
-#### ✈️ Flight Tracker
-
-Uçakların gerçek zamanlı konumunu haritada gösteren bir web uygulaması.
-🔗 [Detaylı Git](./flight-tracker)
-🌍 [Canlı Demo](https://flight-tracker-amsgn7wuwjjhs2n4ofrd23.streamlit.app)
-
----
-
-#### 🤖 AI Tabanlı Sanal Fabrika Dashboard
-
-Sentetik vibrasyon verisi üreten ve anomali tespiti yapan simülasyon.
-🔗 [Detaylı Git](./SyntheticData+AI)
-🧪 [Canlı Demo](https://python-data-projects-4k6rgpquqe2jynjngz4qdb.streamlit.app)
-
----
-
-#### 🚗 2020 Türkiye Otomotiv Pazarı Analizi
-
-2020 yılında Türkiye’deki araç satış verilerinin detaylı analizi ve görselleştirilmesi.
-🔗 [Proje Git](./2020-turkey-car-market)
-
----
-
-#### 🌿 Yenilenebilir Enerji Analizi
-
-Gerçek Eurostat verisiyle AB-27 yenilenebilir enerji payını analiz eden, baştan yazılmış proje: güvenli veri hattı, sıkılaştırılmış FastAPI API ve interaktif dashboard.
-🔗 [Proje Git](./renewable-energy-analyzing)
-🌍 [Canlı Demo](https://claude.ai/code/artifact/4487d571-f1fd-4518-b94a-4050f5d0c9be)
-
----
-
 ### ⚙️ Kurulum
 
-Projelerin her biri bağımsızdır:
+Projelerin her biri bağımsızdır — kökte tek bir kurulum yoktur:
 
 ```bash
-cd proje-adi
-pip install -r requirements.txt  # varsa
-streamlit run streamlit_app.py   # Streamlit projeleri için
+git clone https://github.com/ErenAksu17/python-data-projects.git
+cd python-data-projects/<proje-adi>
+pip install -r requirements.txt   # varsa
 ```
 
----
+Her projenin kendi README'sinde nasıl çalıştırılacağı adım adım anlatılıyor.
 
-## 🇮🇹 Italiano
+### 🧭 Yaklaşım
 
-Questo repository contiene i miei progetti di data science, analisi e visualizzazione sviluppati in Python.
-Ogni cartella include un progetto indipendente. Sono state utilizzate librerie come Streamlit, pandas, PyTorch e altre.
-
----
-
-### 📂 Progetti
-
-#### ✈️ Flight Tracker
-
-Un'app web che mostra la posizione in tempo reale degli aerei su una mappa.
-🔗 [Vai al Progetto](./flight-tracker)
-🌍 [Demo Live](https://flight-tracker-amsgn7wuwjjhs2n4ofrd23.streamlit.app)
+- **Gerçek veri.** Eurostat, OpenSky ve kamuya açık pazar verileri — sentetik demo verisi değil.
+  *(Virtual Factory'nin simülatörü bilinçli bir istisnadır: fiziği bilinen bir arıza üretmek için var.)*
+- **Dürüst çıktı.** Tahminler doğrulanır; naif modeli geçemeyen bir tahmin yayınlanmaz.
+- **Testler kapıdır.** Aktif projelerde pytest + CI zorunlu.
 
 ---
 
-#### 🤖 Dashboard della Fabbrica Virtuale Basata su AI
-
-Una simulazione che genera dati di vibrazione sintetici e rileva anomalie.
-🔗 [Vai al Progetto](./SyntheticData+AI)
-🧪 [Demo Live](https://python-data-projects-4k6rgpquqe2jynjngz4qdb.streamlit.app)
-
----
-
-#### 🚗 Analisi del Mercato Automotive in Turchia - 2020
-
-Analisi dettagliata e visualizzazione dei dati di vendita di veicoli in Turchia per l'anno 2020.
-🔗 [Vai al Progetto](./2020-turkey-car-market)
-
----
-
-#### 🌿 Analisi dell’Energia Rinnovabile
-
-Progetto riscritto che analizza la quota di energia rinnovabile dell’UE-27 da dati reali Eurostat: pipeline sicura, API FastAPI e dashboard interattiva.
-🔗 [Vai al Progetto](./renewable-energy-analyzing)
-🌍 [Demo Live](https://claude.ai/code/artifact/4487d571-f1fd-4518-b94a-4050f5d0c9be)
-
----
+## 🇬🇧 English
 
 ### ⚙️ Setup
 
-Ogni progetto è indipendente:
+Every project stands on its own — there is no single root install:
 
 ```bash
-cd nome-progetto
-pip install -r requirements.txt  # se presente
-streamlit run streamlit_app.py   # per i progetti Streamlit
+git clone https://github.com/ErenAksu17/python-data-projects.git
+cd python-data-projects/<project-name>
+pip install -r requirements.txt   # if present
 ```
+
+Each project's own README documents how to run it.
+
+### 🧭 Approach
+
+- **Real data.** Eurostat, OpenSky and public market data — not synthetic demo filler.
+  *(Virtual Factory's simulator is a deliberate exception: it exists to produce faults whose physics is known.)*
+- **Honest output.** Forecasts are validated; a forecast that cannot beat a naive baseline is not published.
+- **Tests are a gate.** pytest + CI are required on the active projects.
+
+---
+
+<div align="center">
+<sub>👤 <a href="https://github.com/ErenAksu17">ErenAksu17</a> · Geri bildirime her zaman açığım / Feedback always welcome</sub>
+</div>
