@@ -16,10 +16,11 @@ from **real Eurostat data**: a secure pipeline → a hardened API → a clean da
 
 > **Diller / Languages:** [🇹🇷 Türkçe](#-türkçe) · [🇬🇧 English](#-english)
 
-![Dashboard önizlemesi](docs/images/dashboard-preview.png)
+[![Renewable Energy Analyzer — canlı dashboard önizlemesi](docs/images/dashboard-preview.png)](https://claude.ai/code/artifact/4487d571-f1fd-4518-b94a-4050f5d0c9be)
 
-> Yukarıdaki görsel statik bir önizlemedir; gerçek dashboard interaktiftir (trend/tahmin,
-> ülke keşfi, sektör kırılımı). Çalıştırmak için aşağıdaki adımları izleyin.
+> ☝️ **Görsele tıkla → canlı interaktif demo.** React + Tailwind + shadcn/ui ile;
+> trend/tahmin, ülke keşfi ve sektör kırılımı tıklanabilir. Yerelde çalıştırmak için
+> aşağıdaki adımları izleyin.
 
 ---
 
